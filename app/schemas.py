@@ -1,4 +1,4 @@
-from datetime import datetime as dt
+from datetime import datetime as date
 from pydantic import BaseModel as BM, Field
 
 class NoteCreate(BM):
@@ -9,7 +9,7 @@ class NoteResponse(BM):
     id: str
     title: str | None
     content: str
-    created_at: datetime
+    created_at: date
 
     model_config = {"from_attributes": True}
 
