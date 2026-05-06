@@ -18,7 +18,7 @@ app = FastAPI(
 @app.post(
     "/notes",
     response_model = schemas.NoteResponse,
-    status_code = status.HTTP_201_CREATED
+    status_code = status.HTTP_201_CREATED,
     summary = "Create a note"
 )
 def create_note(payload: schemas.NoteCreate, db: Session = Depends(get_db)):
