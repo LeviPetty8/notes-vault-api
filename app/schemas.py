@@ -1,20 +1,20 @@
-from datetime import datetime as date
-from pydantic import BaseModel as BM, Field
+from datetime import datetime
+from pydantic import BaseModel, Field
 
-# Create a Note
-class NoteCreate(BM):
-    title: str | None = Field(None, max_length = 200, examples = ["Shopping List"])
-    content: str = Field(..., min_length = 1, max_length = 10_000, examples = ["Buy milk, eggs, and bread"])
+# Create a note
+class NoteCreate(BaseModel):
+    title: str | None = Field(None, max_length=200, examples=["Shopping list"])
+    content: str = Field(..., min_length=1, max_length=10_000, examples=["Buy milk, eggs, bread"])
 
-# Response when accessing a Note
-class NoteResponse(BM):
+# Response when accessing a note
+class NoteResponse(BaseModel):
     id: str
     title: str | None
     content: str
-    created_at: date
+    created_at: datetime
 
     model_config = {"from_attributes": True}
 
-# Error message for non-existant notes, etc.
-class ErrorDetail(BM):
+# Error message when trying a forbidden method
+class ErrorDetail(BaseModel):
     detail: str
