@@ -15,6 +15,7 @@ app = FastAPI(
     description = "A simple REST API for creating, viewing, and deleting notes."
 )
 
+# POST creates a new note
 @app.post(
     "/notes",
     response_model = schemas.NoteResponse,
@@ -33,6 +34,7 @@ def create_note(payload: schemas.NoteCreate, db: Session = Depends(get_db)):
     db.refresh(note)
     return note
 
+# GET retrieves an existing note
 @app.get(
     "/notes/{note_id}",
     response_model = schemas.NoteResponse,
@@ -45,6 +47,7 @@ def get_note(note_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code = 404, detail = f"Note '{note_id}' not found")
     return note
 
+# DELETE deletes an existing note
 @app.delete(
     "/notes/{note_id}",
     status_code = status.HTTP_204_NO_CONTENT,
