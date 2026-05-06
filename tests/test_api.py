@@ -50,7 +50,7 @@ def test_get_note_by_id(client):
     note_id = client.post("/notes", json = {"content": "Hello, world"}).json()["id"]
     resp = client.get(f"/notes/{note_id}")
     assert resp.status_code == 200
-    assert resp.json()["content"] = "Hello, world"
+    assert resp.json()["content"] == "Hello, world"
 
 def test_get_note_not_found(client):
     resp = client.get("/notes/does-not-exist")
