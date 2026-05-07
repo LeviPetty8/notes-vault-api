@@ -20,7 +20,7 @@ def _make_engine():
         poolclass=StaticPool,
     )
 
-
+# TestClient
 @pytest.fixture
 def client():
     engine = _make_engine()
@@ -41,7 +41,7 @@ def client():
     Base.metadata.drop_all(bind=engine)
     engine.dispose()
 
-
+# In-memory database
 @pytest.fixture
 def db_session():
     engine = _make_engine()
